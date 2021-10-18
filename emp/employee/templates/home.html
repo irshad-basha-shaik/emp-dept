@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body style="height:1500px">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Employee Details:</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="home">Employee Registration:</a></li>
+      <li><a href="saveform">Employee Details:</a></li>
+      <li><a href="dentry">Department New Entry:</a></li>
+      <li><a href="dmenu">Department Menu:</a></li>
+
+    </ul>
+  </div>
+</nav>
+
+<form style="margin-top: 50px" action="/saveform" method="post">
+  {% csrf_token %}
+  <div class="container" >
+
+    <h1>Employee Registration:</h1>
+    <hr>
+
+    <div class="form-group">
+      <label class="control-label col-lg-2" for="email">Email Id:</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="email"  placeholder="Enter email" name="email">
+        <input type="hidden" class="form-control" id="id"  name="id">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-lg-2" for="name">Name:</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="name"  placeholder="Enter name" name="name">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-lg-2" for="contact">Contact:</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="contact"  placeholder="Enter contact" name="contact">
+      </div>
+    </div>
+    <select class="form-select form-control" id="depid" aria-label="Default Select Department" name="depid">
+      <option selected>Select Department</option>
+      {% for form in depts %}
+      <option value={{form.id}}>{{form.dname}}</option>
+      {% endfor %}
+    </select>
+<!--    <div class="dropdown">-->
+<!--    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Department ID<span class="caret"></span></button>-->
+<!--    <ul class="dropdown-menu">-->
+<!--      {% for form in form_list %}-->
+<!--      <li><a href="#">{{form.dname}}</a></li>-->
+<!--      {% endfor %}-->
+<!--    </ul>-->
+<!--  </div>-->
+    <hr>
+    <button type="submit" >Register</button>
+  </div>
+</form>
+
+</body>
+</html>

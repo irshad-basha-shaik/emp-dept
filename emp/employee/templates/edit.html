@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body style="height:1500px">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Employee Details:</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/">Employee Registration:</a></li>
+      <li><a href="save">Employee Details:</a></li>
+      <li><a href="dentry">Department Registration:</a></li>
+      <li><a href="dmenu">Department Details:</a></li>
+
+    </ul>
+  </div>
+</nav>
+
+<form style="margin-top: 50px" action="/editform" method="post">
+  {% csrf_token %}
+  <div class="container" >
+
+    <h1>Edit Details:</h1>
+    <hr>
+
+
+    <div class="form-group">
+      <label class="control-label col-lg-2" for="email">Email Id:</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="email" value="{{form.email}}" placeholder="Enter email" name="email">
+        <input type="hidden" class="form-control" value="{{form.id}}" placeholder="Enter id" name="id">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-lg-2" for="name">Name:</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="name" value="{{form.name}}" placeholder="Enter name" name="name">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-lg-2" for="contact">Contact:</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="contact" value="{{form.contact}}" placeholder="Enter contact" name="contact">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-2">
+        <label for="depid">Department:{{form.depid}}</label>
+        <select id="depid" name="departments" value="{{form.depid}}">
+          {% for d in depts %}
+          <option value="{{d.id}}--{{d.dname}}" >{{d.id}}/{{d.dname}}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    <hr>
+    <button type="submit" class="save">Register</button>
+  </div>
+</form>
+
+</body>
+</html>
